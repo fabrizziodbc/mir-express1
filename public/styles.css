@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+    background-color: blanchedalmond    ;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 30vh;
+  width: 100vw;
+  margin-bottom: 16px;
+}
+.form-container form button {
+  width: 80px;
+}
+.cow {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
