@@ -1,21 +1,16 @@
 import express from "express";
+import adminRoutes from "./routes/admin.routes.js";
+import home from "./routes/home.routes.js";
+const { pathname: publicFolder } = new URL("./public", import.meta.url);
 const app = express();
 const port = 5050;
 
 app.use(express.urlencoded({ extended: true }));
-app.get("/form", (req, res, next) => {
-  res
-    .status(200)
-    .send(
-      `<form action="/results" method="POST" target="_blank"><input type="text" name="name"/><button type="submit">Send</button></form>`
-    );
-});
-app.post("/results", (req, res, next) => {
-  console.log(req.body);
-  res.status(301).redirect("/");
-});
-app.get("/", (req, res, next) => {
-  res.status(200).send("<h1>Estamos en el directorio Raiz</h1>");
+app.use(express.static(publicFolder));
+app.use("/admin", adminRoutes);
+app.use("/", home);
+app.use((req, res, next) => {
+  res.status(404).send("<h1>Page not found!</h1>");
 });
 
 app.listen(port, () => {
